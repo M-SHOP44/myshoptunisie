@@ -126,9 +126,9 @@ const UserLayout = () => {
     <Box
         component="footer"
         sx={{
-          py:20,
+          py: 20,
           px: 2,
-          mt: 'auto',
+          mb: 'auto',
           backgroundColor: (theme) =>
             theme.palette.mode === 'light'
               ? theme.palette.grey[200]
