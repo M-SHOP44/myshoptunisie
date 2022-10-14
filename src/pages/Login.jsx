@@ -17,14 +17,14 @@ import Password from '../Component/passwordInput';
 
 // function Copyright() {
 //     return (
-//       <Typography variant="body2" color="text.secondary">
-//         {'Copyright © '}
-//         <Link color="inherit" href="http://localhost:3000">
-//           M-SHOP
-//         </Link>{' '}
-//         {new Date().getFullYear()}
-//         {'.'}
-//       </Typography>
+//     //   <Typography variant="body2" color="text.secondary">
+//     //     {'Copyright © '}
+//     //     <Link color="inherit" href="http://localhost:3000">
+//     //       M-SHOP
+//     //     </Link>{' '}
+//     //     {new Date().getFullYear()}
+//     //     {'.'}
+//     //   </Typography>
 //     );
 //   }
 
@@ -39,7 +39,7 @@ const avatarStyle = {
   bgcolor: "#66bb6a",
 };
 
-export default function SignIn() {
+export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -55,7 +55,7 @@ export default function SignIn() {
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 20,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -68,9 +68,9 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, }}>
             <TextField
-              sx={{mt: 2, mb: 2}}
+              
               required
               fullWidth
               id="email"
@@ -78,6 +78,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              sx={{mt: 2, mb: 2}}
+            
             />
             <Password/>
             <FormControlLabel
@@ -88,7 +90,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 3 }}
             >
               Sign In
             </Button>
@@ -98,11 +100,11 @@ export default function SignIn() {
                   Forgot password?
                 </Link>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Don't have an account?  Sign Up"}
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>

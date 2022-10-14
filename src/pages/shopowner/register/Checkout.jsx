@@ -18,18 +18,18 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Information from './Information';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const steps = ['Shipping address', 'Information', 'Payment details' ,  'Review your order'];
 
@@ -126,7 +126,7 @@ export default function Checkout() {
                       )}
                   </React.Fragment>
               </Paper>
-              <Copyright />
+              {/* <Copyright /> */}
           </Container></>
   );
 }

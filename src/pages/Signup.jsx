@@ -14,19 +14,20 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import IP from "../utils/api.js"
+import Confirmpassword from '../Component/confirmpwd.jsx';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      <Link color="inherit" href="http://localhost:3000">
-        M-SHOP
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="text.secondary">
+//       {'Copyright © '}
+//       <Link color="inherit" href="http://localhost:3000">
+//         M-SHOP
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 
 
@@ -133,7 +134,7 @@ const [formData, setFormData] = useState({
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  // type="password"
                   id="password"
                   value={formData.password} 
                   onChange={event => {setFormData({...formData, password:event.target.value})}}
@@ -141,17 +142,7 @@ const [formData, setFormData] = useState({
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Confirm Password"
-                  type="password"
-                  id="password"
-                  value={formData.password} 
-                  onChange={event => {setFormData({...formData, password:event.target.value})}}
-                  autoComplete="new-password"
-                />
+                <Confirmpassword/>
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -165,20 +156,25 @@ const [formData, setFormData] = useState({
               fullWidth
               variant="contained"
               className='signup'
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 3 }}
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container >
+              <Grid item xs>
+                <Link href="#" variant="body2" >
+                  Already have an account?
+                </Link>
+              </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                   Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sm={{ mt: 5 }} />
+        {/* <Copyright sm={{ mt: 5 }} /> */}
       </Container>
   
   );

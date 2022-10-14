@@ -2,11 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import UserLayout from "./layout/UserLayout";
 import Signup from "./pages/Signup.jsx"
-// import Signin from "./pages/Signin.jsx"
+import Signin from "./pages/Signin.jsx"
 // import MultiActiCard from "./pages/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green} from "@mui/material/colors";
 import Checkout from "./pages/shopowner/register/Checkout"
+import Login from "./pages/Login.jsx";
+
+
 const App = () => {
   const theme = createTheme({
     palette: {
@@ -26,7 +29,8 @@ const App = () => {
           {/* <Route path="/" element={<MultiActiCard />} /> */}
           {/* <Route path="/" element={<Signup />} /> */}
           {/* <Route path="/" element={<Signin />} /> */}
-          <Route path="/" element={<Checkout />} />
+          {/* <Route path="/" element={<Login />} /> */}
+          {/* <Route path="/" element={<Checkout />} /> */}
 
         </Routes>
       </Router>

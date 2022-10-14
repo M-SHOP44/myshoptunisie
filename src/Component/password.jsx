@@ -9,10 +9,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function InputAdornments() {
     const [values, setValues] = React.useState({
-      amount: '',
       password: '',
-      weight: '',
-      weightRange: '',
       showPassword: false,
     });
   
