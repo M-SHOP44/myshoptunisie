@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* HOME */
+.container{
+display:grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+margin: 2rem;
+gap:2rem;
+}
+
+/* SIGN UP */
+#signup{
+  color: white;
+}

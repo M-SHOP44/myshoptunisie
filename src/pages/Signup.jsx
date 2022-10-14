@@ -14,19 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import IP from "../utils/api.js"
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      <Link color="inherit" href="http://localhost:3000">
-        M-SHOP
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import "../App.css"
+import { Navigate } from "react-router-dom";
 
 
 
@@ -46,6 +35,9 @@ const [formData, setFormData] = useState({
     .then((response) => {
       localStorage.setItem("client", JSON.stringify(response.data.client))
       localStorage.setItem("token",response.data.token)
+      if(response.data.token){
+        <Navigate to="/signin" />
+      }
   })
   }
 
@@ -61,18 +53,18 @@ const [formData, setFormData] = useState({
 
   return (
     
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs"  >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 3,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }} >
+            <LockOutlinedIcon href="/" />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -148,8 +140,8 @@ const [formData, setFormData] = useState({
                   label="Confirm Password"
                   type="password"
                   id="password"
-                  value={formData.password} 
-                  onChange={event => {setFormData({...formData, password:event.target.value})}}
+                  value={formData.confirmpassword} 
+                  onChange={event => {setFormData({...formData, confirmpassword:event.target.value})}}
                   autoComplete="new-password"
                 />
               </Grid>
@@ -166,19 +158,20 @@ const [formData, setFormData] = useState({
               variant="contained"
               className='signup'
               sx={{ mt: 3, mb: 2 }}
-            >
+              id="signup"
+              onClick={signup}
+              >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sm={{ mt: 5 }} />
       </Container>
   
   );
