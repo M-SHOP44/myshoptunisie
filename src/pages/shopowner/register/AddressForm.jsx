@@ -10,11 +10,11 @@ import InputAdornments from '../../../Component/password';
 
 export default function AddressForm() {
   return (
-    <React.Fragment >
+    <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-      <Grid container spacing={3} >
+      <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField
             required
@@ -26,10 +26,10 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <SelectVariants/>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="Full name"
@@ -40,7 +40,7 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="Enter Your Phone Number"
@@ -51,7 +51,7 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="New email"
@@ -62,7 +62,7 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="Confirm new email"
@@ -72,17 +72,16 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
-        
-        <Grid item xs={12} >
+        <Grid item xs={11} md={6}>
           <InputAdornments/>
         </Grid>
         
-        {/* <Grid item xs={12}>
+        <Grid item xs={11}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+            control={<Checkbox color="success" name="saveAddress" value="yes" />}
             label="Use this address for payment details"
           />
-        </Grid> */}
+        </Grid>
       </Grid>
     </React.Fragment>
   );

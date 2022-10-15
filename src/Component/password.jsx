@@ -10,6 +10,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 export default function InputAdornments() {
     const [values, setValues] = React.useState({
       password: '',
+      renterpassword: '',
       showPassword: false,
     });
   
@@ -30,7 +31,7 @@ export default function InputAdornments() {
   
     return (
 
-        <><FormControl sx={{ width: '60ch' }} variant="standard">
+        <><FormControl sx={{ width: '340px' }} variant="standard">
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
             <Input
                 id="standard-adornment-password"
@@ -47,7 +48,7 @@ export default function InputAdornments() {
                     </IconButton>
                 </InputAdornment>} />
         </FormControl>
-        <FormControl sx={{ mt: 2,mr: 42,width: '60ch' }} variant="standard">
+        <FormControl sx={{ mt: 2, width: '340px' }} variant="standard">
                 <InputLabel htmlFor="standard-adornment-password">Reenter Password</InputLabel>
                 <Input
                     id="standard-adornment-password"
