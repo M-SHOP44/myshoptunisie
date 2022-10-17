@@ -9,7 +9,7 @@ import { green} from "@mui/material/colors";
 import { BasketContext } from "./context/BasketContext";
 import Login from "../src/pages/shopowner/register/Login"
 import Checkout from "../src/pages/shopowner/register/Checkout"
-import DashboardShopowner from './pages/shopowner/dashboard/DashboardShopowner'
+import DashboardShopowner from './pages/shopowner/dashboard/HomeShopowner'
 const App = () => {
   const [products, setProducts] = React.useState([]);
   const theme = createTheme({
@@ -27,23 +27,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-<<<<<<< HEAD
-
-          {/* <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
+          <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sell" element={<Checkout />} /> */}
-          <Route path="/" element={<DashboardShopowner/>}/>
-=======
-          {/* <Route path="/" element={<UserLayout />} /> */}
-          {/* <Route path="/" element={<MultiActiCard />} /> */}
-          {/* <Route path="/" element={<Signup />} /> */}
-          {/* <Route path="/" element={<Signin />} /> */}
-          {/* <Route path="/" element={<Login />} /> */}
-          <Route path="/" element={<Checkout />} />
->>>>>>> 02d76aa86fe59fb45d93cf86f7853063879e4517
-
+          <Route path="/sell" element={<Checkout />} />
+          <Route path="/sellershop" element={<DashboardShopowner/>}/>
         </Routes>
       </Router>
     </ThemeProvider>

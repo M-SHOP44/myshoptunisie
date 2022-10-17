@@ -35,9 +35,10 @@ const [formData, setFormData] = useState({
     .then((response) => {
       localStorage.setItem("client", JSON.stringify(response.data.client))
       localStorage.setItem("token",response.data.token)
-      if(response.data.token){
-        <Navigate to="/signin" />
-      }
+      console.log(response.data);
+      // if(response.data.token){
+      //   <Navigate to="/signin" />
+      // }
   })
   }
 
@@ -125,7 +126,7 @@ const [formData, setFormData] = useState({
                   fullWidth
                   name="password"
                   label="Password"
-                  // type="password"
+                  type="password"
                   id="password"
                   value={formData.password} 
                   onChange={event => {setFormData({...formData, password:event.target.value})}}

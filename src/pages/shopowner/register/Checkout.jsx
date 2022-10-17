@@ -70,7 +70,7 @@ export default function Checkout() {
   return (
     
     <>
-    {/* <AppBar
+     <AppBar
           position="absolute"
           color="inherit"
           elevation={0}
@@ -81,14 +81,14 @@ export default function Checkout() {
       >
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography sx={word} variant="h6" color="green" noWrap>
-                  Company name
+                MyShopTunis
               </Typography>
-              <Button sx={button} variant="contained" color="success">
+              <Button sx={button} variant="contained" color="success" href='/login'>
                 Already Registered
               </Button>   
           </Toolbar>
-          <Link href="/login">LOGIN</Link>
-      </AppBar> */}
+         
+      </AppBar> 
       <Container component="main" Width="80%" sx={{ mb: 4 }}>
               <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
      
