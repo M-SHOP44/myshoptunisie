@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import SelectVariants from '../../../Component/select';
-import InputAdornments from '../../../Component/password';
+import SelectVariants from '../../../components/select';
+import InputAdornments from '../../../components/password';
 
 
 export default function AddressForm() {

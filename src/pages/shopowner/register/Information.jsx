@@ -4,11 +4,11 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import SelectVariants from '../../../Component/select';
-import InputAdornments from '../../../Component/password';
-import SelectCountry from '../../../Component/selectcountry';
-import SelectIdentity from '../../../Component/select';
-import SelectMatricule from '../../../Component/matricule';
+// import SelectVariants from '../../../components/select';
+// import InputAdornments from '../../../components/password';
+import SelectCountry from '../../../components/selectcountry';
+import SelectIdentity from '../../../components/select';
+import SelectMatricule from '../../../components/matricule';
 
 
 export default function Information() {

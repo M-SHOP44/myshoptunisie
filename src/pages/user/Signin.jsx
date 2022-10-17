@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,33 +11,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green } from '@mui/material/colors';
-import Password from '../Component/passwordInput';
-
-// function Copyright() {
-//     return (
-//       <Typography variant="body2" color="text.secondary">
-//         {'Copyright © '}
-//         <Link color="inherit" href="http://localhost:3000">
-//           M-SHOP
-//         </Link>{' '}
-//         {new Date().getFullYear()}
-//         {'.'}
-//       </Typography>
-//     );
-//   }
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: green[500],
-    },
-  },
-});
-const avatarStyle = {
-  bgcolor: "#66bb6a",
-};
+import axios from 'axios';
+import IP from "../../utils/api"
+import "../../App.css";
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -48,8 +24,19 @@ export default function SignIn() {
       password: data.get('password'),
     });
   };
- 
-
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+  const signin = () => {
+    axios.post(`${IP}/auth/client/signin`, formData)
+    .then(response => {
+      if(response.data.token){
+        // navigate("/DashboardAdmin");
+        console.log(response);
+      }
+  })
+  }
   return (
 
       <Container component="main" maxWidth="xs">
@@ -62,7 +49,7 @@ export default function SignIn() {
             
           }}
         >
-          <Avatar sx={avatarStyle}>
+          <Avatar >
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -78,8 +65,21 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={formData.email} 
+              onChange={event => {setFormData({...formData, email:event.target.value})}}
             />
-            <Password/>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={formData.password} 
+              onChange={event => {setFormData({...formData, password:event.target.value})}}
+            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -89,6 +89,8 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              id="signup"
+              onClick={signin}
             >
               Sign In
             </Button>
@@ -99,14 +101,13 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
   );
 

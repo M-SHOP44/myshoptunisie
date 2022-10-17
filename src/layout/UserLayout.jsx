@@ -4,13 +4,17 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import Container from '@mui/material/Container';
 import { styled, alpha } from '@mui/material/styles';
+import Basket from '../components/Basket';
+import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
+import { IconButton } from '@mui/material';
+import { margin } from '@mui/system';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -20,6 +24,7 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
+  marginRight: "5rem",
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
@@ -56,30 +61,26 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
       <Typography variant="body2" color="text.secondary">
         {'Copyright © '}
         <Link color="inherit" href="http://localhost:3000">
-          M-SHOP
+          MyShopTunisie
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
       </Typography>
     );
   }
-const UserLayout = () => {
+const UserLayout = ({children}) => {
   return (
-  <Box sx={{ flexGrow: 1 }}>
+  <Box >
     <AppBar position="static" color="primary">
       <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          {/* <MenuIcon /> */}
-        </IconButton>
-        <Typography variant="h6" color="secondary" component="div" sx={{ flexGrow: 1 }}>
-         M-SHOP
+        <Typography variant="h6" color="secondary" margin={"0px 0px 0px 0px"}  sx={{ flexGrow: 1 }}>
+         MyShopTunis
         </Typography>
+        <Button  style={{hover:"none"}} sx={{ flexGrow: 5, justifyContent: 'start' }} margin={"0"}>
+            <StorefrontTwoToneIcon color="secondary"/>
+            <Link color="secondary"  underline="none" fontSize={"15px"} fontFamily={"'Gill Sans', sans-serif"} href="/sell">Sell at MyShopTunisie</Link>
+          </Button> 
+       
         <Search >
             <SearchIconWrapper>
               <SearchIcon />
@@ -89,8 +90,8 @@ const UserLayout = () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-        <Button color="secondary">Signup</Button>
-        <Button color="secondary">Login</Button>
+        <Button color="secondary" href='/signup'>Signup</Button>
+        <Button color="secondary" href='/signin'>Login</Button>
       </Toolbar>
     </AppBar>
     <AppBar position="static"color="secondary">
@@ -121,8 +122,12 @@ const UserLayout = () => {
        {'Bureau'}
       </Link>
     </Stack>
+    <Basket/>
       </Toolbar>
     </AppBar>
+    <div>
+      {children }
+    </div>
     <Box
         component="footer"
         sx={{
@@ -146,4 +151,4 @@ const UserLayout = () => {
   )
 }
 
-export default UserLayout
+export default UserLayout;

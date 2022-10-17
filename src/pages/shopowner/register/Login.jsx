@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,35 +11,11 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green } from '@mui/material/colors';
-import Password from '../Component/passwordInput';
+import axios from 'axios';
+import IP from "../../../utils/api"
+import "../../../App.css";
 
-// function Copyright() {
-//     return (
-//     //   <Typography variant="body2" color="text.secondary">
-//     //     {'Copyright © '}
-//     //     <Link color="inherit" href="http://localhost:3000">
-//     //       M-SHOP
-//     //     </Link>{' '}
-//     //     {new Date().getFullYear()}
-//     //     {'.'}
-//     //   </Typography>
-//     );
-//   }
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: green[500],
-    },
-  },
-});
-const avatarStyle = {
-  bgcolor: "#66bb6a",
-};
-
-export default function Login() {
+export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -48,29 +24,40 @@ export default function Login() {
       password: data.get('password'),
     });
   };
- 
-
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+  const signin = () => {
+    axios.post(`${IP}/auth/shopowner/signin`, formData)
+    .then(response => {
+      if(response.data.token){
+        // navigate("/DashboardAdmin");
+        console.log(response);
+      }
+  })
+  }
   return (
 
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             
           }}
         >
-          <Avatar sx={avatarStyle}>
+          <Avatar  >
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              
+              sx={{mt: 2, mb: 2}}
               required
               fullWidth
               id="email"
@@ -78,10 +65,21 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
-              sx={{mt: 2, mb: 2}}
-            
+              value={formData.email} 
+              onChange={event => {setFormData({...formData, email:event.target.value})}}
             />
-            <Password/>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={formData.password} 
+              onChange={event => {setFormData({...formData, password:event.target.value})}}
+            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -90,7 +88,9 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 3 }}
+              sx={{ mt: 3, mb: 2 }}
+              id="signup"
+              onClick={signin}
             >
               Sign In
             </Button>
@@ -100,15 +100,14 @@ export default function Login() {
                   Forgot password?
                 </Link>
               </Grid>
-              {/* <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account?  Sign Up"}
+              <Grid item>
+                <Link href="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
   );
 
