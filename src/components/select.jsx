@@ -13,8 +13,8 @@ export default function SelectIdentity() {
 
   return (
     <div>
-      <FormControl variant="standard" sx={{  minWidth: 535 }}>
-        <InputLabel id="demo-simple-select-standard-label">Type of identity document of the owner of the company or legal representative *</InputLabel>
+      <FormControl variant="standard" sx={{  minWidth: 340 }}>
+        <InputLabel id="demo-simple-select-standard-label">CIN *</InputLabel>
         <Select
           required
           labelId="demo-simple-select-standard-label"

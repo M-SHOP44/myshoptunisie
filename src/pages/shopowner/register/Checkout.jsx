@@ -48,7 +48,13 @@ function getStepContent(step) {
   }
 }
 
-const theme = createTheme();
+const button = {
+    bgcolor: "#66bb6a",
+    
+  };
+const word = {
+    color: "#66bb6a"
+};
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -73,19 +79,23 @@ export default function Checkout() {
               borderBottom: (t) => `1px solid ${t.palette.divider}`,
           }}
       >
-          <Toolbar>
-              <Typography variant="h6" color="green" noWrap>
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography sx={word} variant="h6" color="green" noWrap>
                   Company name
               </Typography>
+              <Button sx={button} variant="contained" color="success">
+                Already Registered
+              </Button>   
           </Toolbar>
           <Link href="/login">LOGIN</Link>
       </AppBar> */}
       <Container component="main" Width="80%" sx={{ mb: 4 }}>
               <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+     
                   <Typography component="h1" variant="h4" align="center">
-                      Checkout
+                      Register Here
                   </Typography>
-                  <Stepper  activeStep={activeStep} sx={{ pt: 3, pb: 5, width: "100%" }}>
+                  <Stepper  activeStep={activeStep} sx={{ pl: 3 ,pt: 3, pb: 5, width: "95%" }}>
                       {steps.map((label) => (
                           <Step key={label}>
                               <StepLabel>{label}</StepLabel>

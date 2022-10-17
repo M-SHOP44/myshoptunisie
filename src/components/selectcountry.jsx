@@ -13,8 +13,8 @@ export default function SelectCountry() {
 
   return (
     <div>
-      <FormControl variant="standard" sx={{  minWidth: 535 }}>
-        <InputLabel id="demo-simple-select-standard-label">country *</InputLabel>
+      <FormControl variant="standard" sx={{  minWidth: 340 }}>
+        <InputLabel id="demo-simple-select-standard-label">Country *</InputLabel>
         <Select
           required
           labelId="demo-simple-select-standard-label"

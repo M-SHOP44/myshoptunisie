@@ -13,8 +13,8 @@ export default function SelectMatricule() {
 
   return (
     <div>
-      <FormControl variant="standard" sx={{  minWidth: 535 }}>
-        <InputLabel id="demo-simple-select-standard-label">Avez-vous un matricule fiscal ? *</InputLabel>
+      <FormControl variant="standard" sx={{  minWidth: 340 }}>
+        <InputLabel id="demo-simple-select-standard-label">Do you have a tax number ? *</InputLabel>
         <Select
           required
           labelId="demo-simple-select-standard-label"

@@ -18,7 +18,7 @@ export default function Information() {
         User's Info
       </Typography>
       <Grid container spacing={3} >
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="Adresse (1) "
@@ -30,7 +30,7 @@ export default function Information() {
           />
         </Grid>
         
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="Postal code"
@@ -41,7 +41,7 @@ export default function Information() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
             id="City"
@@ -52,31 +52,31 @@ export default function Information() {
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <SelectCountry/>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
-            id="First and last names of the owner of the company or legal representative"
-            name="First and last names of the owner of the company or legal representative"
-            label="First and last names of the owner of the company or legal representative"
+            id="Full name of business owner"
+            name="Full name of business owner"
+            label="Full name of business owner"
             fullWidth
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <SelectIdentity/>
         </Grid>
-        <Grid item xs={12} md={6} >
+        <Grid item xs={11} md={6} >
           <SelectMatricule/>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={11} md={6}>
           <TextField
             required
-            id="Identifiant fiscal"
-            name="Identifiant fiscal"
-            label="Identifiant fiscal"
+            id="Tax identification number"
+            name="Tax identification number"
+            label="Tax identification number"
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
