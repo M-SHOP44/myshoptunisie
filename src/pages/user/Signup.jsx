@@ -13,8 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
-import IP from "../utils/api.js"
-import "../App.css"
+import IP from "../../utils/api"
+import "../../App.css"
 import { Navigate } from "react-router-dom";
 
 
@@ -125,7 +125,7 @@ const [formData, setFormData] = useState({
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  // type="password"
                   id="password"
                   value={formData.password} 
                   onChange={event => {setFormData({...formData, password:event.target.value})}}
@@ -163,7 +163,12 @@ const [formData, setFormData] = useState({
               >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container >
+              <Grid item xs>
+                <Link href="#" variant="body2" >
+                  Already have an account?
+                </Link>
+              </Grid>
               <Grid item>
                 <Link href="/signin" variant="body2">
                   Already have an account? Sign in
