@@ -14,8 +14,11 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import IP from "../../../utils/api"
 import "../../../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -32,7 +35,9 @@ export default function SignIn() {
     axios.post(`${IP}/auth/shopowner/signin`, formData)
     .then(response => {
       if(response.data.token){
-        // navigate("/DashboardAdmin");
+        localStorage.setItem("shopowner", JSON.stringify(response.data.client))
+        localStorage.setItem("token",response.data.token)
+        navigate("/sellershop");
         console.log(response);
       }
   })

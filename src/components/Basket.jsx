@@ -1,19 +1,24 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { Button, IconButton } from "@mui/material";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import "../App.css";
 import { BasketContext } from "../context/BasketContext";
+
+
 export default function Basket() {
+var [quantity, setQuantity] = useState(0)
+
   const [state, setState] = React.useState({
     right: false,
   });
 
-  const { products, setProducts } = React.useContext(BasketContext);
+  const { basket, setBasket } = React.useContext(BasketContext);
   React.useEffect(()=>{
-    console.log(products);
-  },[products])
+    console.log(basket);
+  },[basket])
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -24,7 +29,13 @@ export default function Basket() {
     }
     setState({ ...state, [anchor]: open });
   };
-
+const increment = () =>{
+  setQuantity(++quantity)
+  console.log("hhhahahaha" , quantity)
+}
+const decrement = () =>{
+  setQuantity(++quantity)
+}
   return (
     <div>
       {["right"].map((anchor) => (
@@ -45,12 +56,14 @@ export default function Basket() {
               onClick={toggleDrawer(anchor, false)}
               onKeyDown={toggleDrawer(anchor, false)}
             >
-              {products.map((product, i) => {
+              {basket.map((product, i) => {
                 return (
                   <div key={i}>
-                    <span> </span>
                     <h2>{product.title}</h2>
-                    <h3>{product.price}</h3>
+                    <h3 color="red">{product.price}</h3>
+                    <h5>{quantity}</h5>
+                    <button onClick={increment}>+</button>
+                    <button onClick={decrement}>-</button>
                   </div>
                 );
               })}

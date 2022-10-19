@@ -6,12 +6,11 @@ import Signin from "./pages/user/Signin"
 import Home from "./pages/user/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green} from "@mui/material/colors";
-import { BasketContext } from "./context/BasketContext";
 import Login from "../src/pages/shopowner/register/Login"
 import Checkout from "../src/pages/shopowner/register/Checkout"
-import DashboardShopowner from './pages/shopowner/dashboard/HomeShopowner'
+import ShopOwnerLayout from './layout/ShopOwnerLayout'
+import HomeShopowner from './pages/shopowner/dashboard/HomeShopowner'
 const App = () => {
-  const [products, setProducts] = React.useState([]);
   const theme = createTheme({
     palette: {
       primary: {
@@ -23,7 +22,6 @@ const App = () => {
     }
   });
   return (
-    <BasketContext.Provider value={{ products , setProducts}} >
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
@@ -32,11 +30,10 @@ const App = () => {
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sell" element={<Checkout />} />
-          <Route path="/sellershop" element={<DashboardShopowner/>}/>
+          <Route path="/sellershop" element={<ShopOwnerLayout><HomeShopowner/></ShopOwnerLayout>}/>
         </Routes>
       </Router>
     </ThemeProvider>
-    </BasketContext.Provider>
   );
 };
 

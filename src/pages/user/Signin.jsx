@@ -14,8 +14,11 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import IP from "../../utils/api"
 import "../../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -31,9 +34,11 @@ export default function SignIn() {
   const signin = () => {
     axios.post(`${IP}/auth/client/signin`, formData)
     .then(response => {
+     
       if(response.data.token){
-        // navigate("/DashboardAdmin");
-        console.log(response);
+        localStorage.setItem("client", JSON.stringify(response.data.client))
+        localStorage.setItem("token",response.data.token)
+        navigate("/");
       }
   })
   }
