@@ -73,7 +73,7 @@ const UserLayout = ({children}) => {
   <Box >
     <AppBar position="static" color="primary">
       <Toolbar>
-        <Typography variant="h6" color="secondary" margin={"0px 0px 0px 0px"}  sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" color="secondary" margin={"0px 0px 0px 0px"}  sx={{ flexGrow: 8 }}>
          MyShopTunis
         </Typography>
         <Button  style={{hover:"none"}} sx={{ flexGrow: 5, justifyContent: 'start' }} margin={"0"}>

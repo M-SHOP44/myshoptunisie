@@ -5,7 +5,9 @@ import { Button, IconButton } from "@mui/material";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import "../App.css";
 import { BasketContext } from "../context/BasketContext";
-export default function Basket() {
+import FolderList from "./cart";
+
+export default function   Basket() {
   const [state, setState] = React.useState({
     right: false,
   });
@@ -26,34 +28,42 @@ export default function Basket() {
   };
 
   return (
-    <div>
+    <div> 
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <IconButton onClick={toggleDrawer(anchor, true)} aria-label="Example">
             <ShoppingBasketIcon color="primary" />
           </IconButton>
-          <Drawer
+          <Drawer 
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
             <Box
               sx={{
-                width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+                width: anchor === "top" || anchor === "bottom" ? "auto" : 400,
               }}
               role="presentation"
               onClick={toggleDrawer(anchor, false)}
               onKeyDown={toggleDrawer(anchor, false)}
             >
+            <div className="cart">
+            <h1>Shopping Cart</h1>
+            </div> 
+            <FolderList/>
               {products.map((product, i) => {
                 return (
                   <div key={i}>
-                    <span> </span>
+                    <span></span>
                     <h2>{product.title}</h2>
                     <h3>{product.price}</h3>
                   </div>
+                  
                 );
+              
               })}
+        
+              
             </Box>
           </Drawer>
         </React.Fragment>

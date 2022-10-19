@@ -49,3 +49,21 @@ gap:2rem;
 #signup{
   color: white;
 }
+
+/*cart*/
+#h2{
+
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 11px 90px;
+}
+
+#row{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}

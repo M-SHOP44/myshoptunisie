@@ -2,93 +2,134 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-// import SelectVariants from '../../../components/select';
-// import InputAdornments from '../../../components/password';
-import SelectCountry from '../../../components/selectcountry';
-import SelectIdentity from '../../../components/select';
-import SelectMatricule from '../../../components/matricule';
+import { useState } from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import SelectMatricule from '../../../components/matricule'
 
+export default function AddressForm() {
+  
+  const [country, setcountry] = React.useState('');
+  const [open, setOpen] = React.useState(false);
 
-export default function Information() {
+  const handleChanges = (event) => {
+    setcountry(event.target.value);
+  };
+ 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+ 
+  const [formData, setFormData] = useState({
+    adress: '',
+    postalcode: '',
+    city: '',
+    name: '',
+    Fullname: '',
+    tax: '',
+  })
   return (
-    <React.Fragment >
+    <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        User's Info
+        Information
       </Typography>
-      <Grid container spacing={3} >
+      <Grid container spacing={3}>
         <Grid item xs={11} md={6}>
-          <TextField
-            required
-            id="Adresse (1) "
-            name="Adresse (1) "
-            label="Adresse (1) "
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        
-        <Grid item xs={11} md={6}>
-          <TextField
-            required
-            id="Postal code"
-            name="Postal code"
-            label="Postal code"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={11} md={6}>
-          <TextField
-            required
-            id="City"
-            name="City"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={11} md={6}>
-          <SelectCountry/>
-        </Grid>
-        <Grid item xs={11} md={6}>
-          <TextField
-            required
-            id="Full name of business owner"
-            name="Full name of business owner"
-            label="Full name of business owner"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={11} md={6}>
-          <SelectIdentity/>
-        </Grid>
+        <TextField  
+              required
+              fullWidth
+              id="Adress (1)"
+              label="Adress (1)"
+              name="Adress (1)"
+              autoComplete="Address"
+              autoFocus
+              value={formData.adress} 
+              onChange={event => {setFormData({...formData, adress:event.target.value})}}
+              />
+      </Grid>
+      <Grid item sm={11} md={6}>
+        <TextField  
+              required
+              fullWidth
+              id="Postal code"
+              label="Postal code"
+              name="Postal code"
+              autoComplete="Postal code"
+              autoFocus
+              value={formData.postalcode} 
+              onChange={event => {setFormData({...formData, postalcode:event.target.value})}}
+            />
+          </Grid>
+          <Grid item sm={11} md={6} >
+        <TextField  
+              required
+              fullWidth
+              id="City"
+              label="City"
+              name="City"
+              autoComplete="City"
+              autoFocus
+              value={formData.city} 
+              onChange={event => {setFormData({...formData, city:event.target.value})}}
+            />
+        </Grid> 
         <Grid item xs={11} md={6} >
-          <SelectMatricule/>
+         <FormControl sx={{  width: '100%' }}>
+        <InputLabel id="demo-controlled-open-select-label">Country *</InputLabel>
+        <Select
+          required
+          fullWidth
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={country}
+          label="Country"
+          onChange={handleChanges}
+        >
+          <MenuItem value={10}>Tunisia</MenuItem>
+          <MenuItem value={20}>France</MenuItem>
+        </Select>
+      </FormControl>
         </Grid>
-        <Grid item xs={11} md={6}>
-          <TextField
-            required
-            id="Tax identification number"
-            name="Tax identification number"
-            label="Tax identification number"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
+        <Grid item xs={11} >
+         <SelectMatricule/>
+        </Grid>     
+        <Grid item sm={11} >
+        <TextField  
+              required
+              fullWidth
+              id="Full name of business owner"
+              label="Full name of business owner"
+              name="Full name of business owner"
+              autoComplete="Full name of business owner"
+              autoFocus
+              value={formData.Fullname} 
+              onChange={event => {setFormData({...formData, Fullname:event.target.value})}}
+            />
         </Grid>
-        
-        {/* <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid> */}
+        <Grid item xs={11} >
+          <TextField 
+                required
+                fullWidth
+                id="Tax identification number"
+                label="Tax identification number"
+                name="Tax identification number"
+                autoComplete="Tax identification number"
+                autoFocus
+                value={formData.tax} 
+                onChange={event => {setFormData({...formData, tax:event.target.value})}}
+              />
+        </Grid> 
       </Grid>
     </React.Fragment>
   );

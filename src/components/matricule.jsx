@@ -6,26 +6,37 @@ import Select from '@mui/material/Select';
 
 export default function SelectMatricule() {
   const [choice, setAge] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div>
-      <FormControl variant="standard" sx={{  minWidth: 340 }}>
-        <InputLabel id="demo-simple-select-standard-label">Do you have a tax number ? *</InputLabel>
+      <FormControl sx={{  width: '100%' }}>
+        <InputLabel id="demo-controlled-open-select-label">Do you have a tax number ? *</InputLabel>
         <Select
           required
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
+          fullWidth
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          onClose={handleClose}
+          onOpen={handleOpen}
           value={choice}
+          label="Do you have a tax number ?"
           onChange={handleChange}
-          label="Choose an option"
         >
-          
-          <MenuItem>Yes</MenuItem>
-          <MenuItem>No</MenuItem>
+          <MenuItem >Yes</MenuItem>
+          <MenuItem >No</MenuItem>
         </Select>
       </FormControl>
       </div>

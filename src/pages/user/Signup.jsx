@@ -15,7 +15,15 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import IP from "../../utils/api"
 import "../../App.css"
-import { Navigate } from "react-router-dom";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+
+// import { Navigate } from "react-router-dom";
 
 
 
@@ -29,6 +37,25 @@ const [formData, setFormData] = useState({
     password: '',
     confirmpassword: ''
   })
+  const [values, setValues] = React.useState({
+    password: '',
+    reenterpassword: '',
+    showPassword: false,
+  });
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
 
   const signup = () => {
     axios.post(`${IP}/auth/client/signup`, formData)
@@ -134,17 +161,28 @@ const [formData, setFormData] = useState({
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Confirm Password"
-                  type="password"
-                  id="password"
-                  value={formData.confirmpassword} 
-                  onChange={event => {setFormData({...formData, confirmpassword:event.target.value})}}
-                  autoComplete="new-password"
-                />
+              <FormControl  sx={{ width: "100%" }} variant="outlined">
+        <InputLabel  required htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+        <OutlinedInput  
+          id="outlined-adornment-password"
+          type={values.showPassword ? 'text' : 'password'}
+          value={values.password}
+          onChange={handleChange('password')}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Confirm Password"
+        />
+      </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
