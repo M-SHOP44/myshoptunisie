@@ -51,7 +51,7 @@ export default function   Basket() {
             <h1>Shopping Cart</h1>
             </div> 
             <FolderList/>
-              {products.map((product, i) => {
+              {products.map((product, i) => { 
                 return (
                   <div key={i}>
                     <span></span>

@@ -28,7 +28,10 @@ export default function FolderList(title,image,price) {
               <ListItemAvatar>
                   
               </ListItemAvatar>
-              <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+              <ListItemText primary="Photos"  />
+              <div className='counter'>
+                
+              </div>
               <IconButton aria-label="delete" size="medium">
         <DeleteIcon fontSize="inherit" />
         </IconButton>
