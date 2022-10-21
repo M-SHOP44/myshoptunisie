@@ -40,9 +40,20 @@
 /* HOME */
 .container{
 display:grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-margin: 2rem;
-gap:2rem;
+grid-template-columns:80% 20%;
+
+}
+.products{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:2rem;
+  margin: 2rem;
+}
+.sidebar-basket{
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-style: solid;
+  border-width: 1px;
 }
 
 /* SIGN UP */

@@ -1,73 +1,81 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import { Button, IconButton } from "@mui/material";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import "../App.css";
+import IP from '../utils/api'
 import { BasketContext } from "../context/BasketContext";
-import FolderList from "./cart";
 
-export default function   Basket() {
-  const [state, setState] = React.useState({
-    right: false,
-  });
+export default function Basket() {
 
-  const { products, setProducts } = React.useContext(BasketContext);
-  React.useEffect(()=>{
-    console.log(products);
-  },[products])
+  const { basket, setBasket } = React.useContext(BasketContext);
+  React.useEffect(() => {
+    console.log(basket);
+  }, [basket]);
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
+  const buyItem = (item) => {
+    let data = [...basket];
+    const x = data.find((product) => product._id == item._id);
+    if (x) {
+      basket.map((product) => {
+        if (product._id == item._id) {
+          product.qty++;
+        }
+        return product;
+      });
+    } else {
+      data.push(item);
     }
-    setState({ ...state, [anchor]: open });
+    setBasket(data);
+    localStorage.setItem("basket", JSON.stringify(data));
   };
+  const removeItem = (item) => {
+    let data = [...basket];
 
+    setBasket(
+      data.filter((product) => {
+        if (product._id == item._id) {
+          product.qty--;
+        }
+        if (product.qty != 0) return product;
+      })
+    );
+    localStorage.setItem("basket", JSON.stringify(data));
+  };
+  
+const remove = (item) =>{
+  let data = [...basket];
+
+    setBasket(
+      data.filter((product) => {
+        if (product._id != item._id) 
+         return product;
+      })
+    );
+    localStorage.setItem("basket", JSON.stringify(data));
+}
+const clear = () =>{
+  setBasket([])
+  localStorage.setItem("basket", JSON.stringify([]));
+}
   return (
-    <div> 
-      {["right"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <IconButton onClick={toggleDrawer(anchor, true)} aria-label="Example">
-            <ShoppingBasketIcon color="primary" />
-          </IconButton>
-          <Drawer 
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            <Box
-              sx={{
-                width: anchor === "top" || anchor === "bottom" ? "auto" : 400,
-              }}
-              role="presentation"
-              onClick={toggleDrawer(anchor, false)}
-              onKeyDown={toggleDrawer(anchor, false)}
-            >
-            <div className="cart">
-            <h1>Shopping Cart</h1>
-            </div> 
-            <FolderList/>
-              {products.map((product, i) => { 
-                return (
-                  <div key={i}>
-                    <span></span>
-                    <h2>{product.title}</h2>
-                    <h3>{product.price}</h3>
-                  </div>
-                  
-                );
+    <div>
+      <Box role="presentation">
+        {basket.map((product, i) => {
+          return (
+            <div key={i}>
+              <img src= {IP +"/"+ product.image} alt="" width='30%'/>
+              <h2>{product.title}</h2>
+              <h3 color="red">{product.price}</h3>
+              <h5>{product.qty}</h5>
+              <button onClick={() => buyItem(product)}>+</button>
+              <button onClick={() => removeItem(product)}>-</button>
+              <button onClick={() => remove(product)}>remove</button>
               
-              })}
-        
-              
-            </Box>
-          </Drawer>
-        </React.Fragment>
-      ))}
+            </div>
+          );
+        })}
+        <button onClick={() => clear()}>clear</button>
+      </Box>
     </div>
   );
 }

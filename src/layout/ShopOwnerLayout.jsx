@@ -16,7 +16,8 @@ import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, secondaryListItems } from '../pages/shopowner/dashboard/listItems';
+import Products from '../pages/shopowner/dashboard/Products';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -145,11 +146,10 @@ export default function DashboardContent() {
             overflow: 'auto',
           }}
         >
+
+        
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-           
-          
-          </Container>
+          <Products/>
         </Box>
       </Box>
   );

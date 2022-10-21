@@ -1,13 +1,12 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function SelectMatricule() {
-  const [choice, setAge] = React.useState('');
+  const [choice, setAge] = React.useState("");
   const [open, setOpen] = React.useState(false);
-
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -22,8 +21,10 @@ export default function SelectMatricule() {
 
   return (
     <div>
-      <FormControl sx={{  width: '100%' }}>
-        <InputLabel id="demo-controlled-open-select-label">Do you have a tax number ? *</InputLabel>
+      <FormControl sx={{ width: "100%" }}>
+        <InputLabel id="demo-controlled-open-select-label">
+          Do you have a tax number ? *
+        </InputLabel>
         <Select
           required
           fullWidth
@@ -35,10 +36,10 @@ export default function SelectMatricule() {
           label="Do you have a tax number ?"
           onChange={handleChange}
         >
-          <MenuItem >Yes</MenuItem>
-          <MenuItem >No</MenuItem>
+          <MenuItem>Yes</MenuItem>
+          <MenuItem>No</MenuItem>
         </Select>
       </FormControl>
-      </div>
-      
-)}
+    </div>
+  );
+}
