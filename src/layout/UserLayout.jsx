@@ -10,7 +10,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import Container from "@mui/material/Container";
 import { styled, alpha } from "@mui/material/styles";
-import Basket from "../components/Basket";
 import StorefrontTwoToneIcon from "@mui/icons-material/StorefrontTwoTone";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -196,7 +195,7 @@ const UserLayout = ({ children }) => {
               {"Bureau"}
             </Link>
           </Stack>
-          <Basket />
+         
         </Toolbar>
       </AppBar>
       <div>{children}</div>

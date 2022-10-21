@@ -23,7 +23,7 @@ export default function ProductCard({ title, image, price, buy }) {
           <Typography gutterBottom variant="h7" component="div">
             {price} TND
           </Typography>
-          <Button variant="contained" onClick={buy} sx={{ ml: 16 }} >
+          <Button variant="contained" onClick={buy} sx={{ ml: 11 }}>
             BUY
           </Button>
         </CardContent>
