@@ -5,6 +5,7 @@ import IP from "../../utils/api"
 import { BasketContext } from "../../context/BasketContext";
 import '../../App.css'
 import Basket from "../../components/Basket";
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 export default function MultiActiCard() {
   const [products, setProducts] = useState([]);
@@ -52,8 +53,10 @@ export default function MultiActiCard() {
       {
         basket.length == 0 ?
         <div>
-        <span></span>
-        <h2>your cart is empty</h2>
+        <h2 id="empty">your cart is empty</h2>
+        <span id="basket-icon">
+        <ShoppingBasketIcon/>
+        </span>
        </div>
       :
       <Basket/>
