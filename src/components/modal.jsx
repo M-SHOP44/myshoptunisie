@@ -7,6 +7,10 @@ import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
 import axios from "axios";
 import IP from "../utils/api";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const style = {
   position: "absolute",
@@ -61,24 +65,30 @@ export default function BasicModal({ open, handleClose }) {
               setFormData({ ...formData, title: event.target.value });
             }}
           />
+        <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label" >Category</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="category"
+          value={formData.category}
+          onChange={(event) => {
+            setFormData({ ...formData, category: event.target.value });
+          }}
+        >
+          <MenuItem value={10}>canapé</MenuItem>
+          <MenuItem value={20}>table</MenuItem>
+          <MenuItem value={30}>chaise</MenuItem>
+          <MenuItem value={40}>Lie</MenuItem>
+          <MenuItem value={50}>rangement</MenuItem>
+        </Select>
+      </FormControl>
+         
           <TextField
             margin="normal"
             required
             fullWidth
-            name="category"
-            label="Category"
-            type="text"
-            id="category"
-            autoComplete="current-category"
-            value={formData.category}
-            onChange={(event) => {
-              setFormData({ ...formData, category: event.target.value });
-            }}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
+            multiline
             name="description"
             label="Description"
             type="text"

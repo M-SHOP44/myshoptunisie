@@ -2,16 +2,16 @@ import * as React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import "../App.css";
-import IP from '../utils/api'
+import IP from "../utils/api";
 import { BasketContext } from "../context/BasketContext";
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Button } from "@mui/material";
 
 export default function Basket() {
-
   const { basket, setBasket } = React.useContext(BasketContext);
   React.useEffect(() => {
     console.log(basket);
@@ -46,67 +46,93 @@ export default function Basket() {
     );
     localStorage.setItem("basket", JSON.stringify(data));
   };
-  
-const remove = (item) =>{
-  let data = [...basket];
+
+  const remove = (item) => {
+    let data = [...basket];
 
     setBasket(
       data.filter((product) => {
-        if (product._id != item._id) 
-         return product;
+        if (product._id != item._id) return product;
       })
     );
     localStorage.setItem("basket", JSON.stringify(data));
-}
-const clear = () =>{
-  setBasket([])
-  localStorage.setItem("basket", JSON.stringify([]));
-}
+  };
+  const clear = () => {
+    setBasket([]);
+    localStorage.setItem("basket", JSON.stringify([]));
+  };
+  const total = () => {
+    return basket.reduce((previous,current)=>{
+      return previous + ( parseFloat(current.price) * current.qty )
+    },0)
+  }
   return (
-    <><div>
-      <Box role="presentation">
-        {basket.map((product, i) => {
-          return (
-            <>
-            <div key={i} className='shop'>
+    <>
+      <div>
+        <Box role="presentation">
+          {basket.map((product, i) => {
+            return (
+              <>
+                <div key={i} className="container-cart">
+                  <div className="left-side">
+                    <img
+                      src={IP + "/" + product.image}
+                      alt=""
+                      
+                    />
+                  </div>
 
-              <div className="image">
-              <img src={IP + "/" + product.image} alt=""  className="img"/>
-              </div>
-
-            <div className="title">
-              <h2 className="h2">{product.title}</h2>
-              <h4 className="h4"> Price : {product.price} DTN</h4>
-              <div className="counter1">
-              <div className="counter">
-              <AddIcon onClick={() => buyItem(product)}></AddIcon>
-              <Divider orientation="vertical" flexItem />
-              <span  className="h5">{product.qty}</span>
-              <Divider orientation="vertical" flexItem />
-              <RemoveIcon onClick={() => removeItem(product)}></RemoveIcon>
-              </div>
-              <IconButton onClick={() => remove(product)} aria-label="delete" size="small">
-              <DeleteIcon fontSize="inherit" />
-              </IconButton>
-            </div>
-            </div>  
-          </div>
+                  <div className="right-side">
+                    <h2 className="title-cart">{product.title}</h2>
+                    <div className="price-delete">
+                    <h4 className="price-cart">{product.price} DTN</h4>
+                    <IconButton
+                        onClick={() => remove(product)}
+                        aria-label="delete"
+                        size="small"
+                        className="delete-icon"
+                      >
+                        <DeleteIcon fontSize="inherit" />
+                      </IconButton>
+                    </div>
+                   
+                    <div className="counter1">
+                      <div className="counter">
+                        <AddIcon onClick={() => buyItem(product)}></AddIcon>
+                        <Divider orientation="vertical" flexItem />
+                        <span className="h5">{product.qty}</span>
+                        <Divider orientation="vertical" flexItem />
+                        <RemoveIcon
+                          onClick={() => removeItem(product)}
+                        ></RemoveIcon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+                <Divider variant="middle" />
              
-            <Divider  variant="middle" />
-            
-            </>
-            
-          );
-          
-        })}
-        <div className="click">
-        <button id="clear" onClick={() => clear()}>clear</button>
-        <button  id="checkout" >Checkout</button>
-        </div>
-        
-      </Box>
-    </div>
-    
-    </> 
+              </>
+            );
+          })}
+             <div className="total">
+              <div>
+              <h3>Total:</h3>
+              </div>
+              <div>
+              <h5>{total()}</h5>
+              </div>
+                    
+                    
+                </div>
+          <div className="click">
+            <Button variant="contained"  onClick={() => clear()}>
+              clear
+            </Button>
+            <Button variant="contained" >Checkout</Button>
+          </div>
+        </Box>
+      </div>
+    </>
   );
 }

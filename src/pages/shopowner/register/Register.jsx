@@ -11,7 +11,6 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Information from './Information';
 import Link from '@mui/material/Link';
@@ -19,7 +18,7 @@ import Link from '@mui/material/Link';
 
 
 
-const steps = ['Shipping address', 'Information', 'Payment details' ,  'Review your order'];
+const steps = ['personal information', 'shop Information' ,  'Review your registration'];
 
 function getStepContent(step) {
   switch (step) {
@@ -28,8 +27,6 @@ function getStepContent(step) {
     case 1:
       return <Information />;
     case 2:
-      return <PaymentForm/>;
-    case 3:
         return <Review />;
     default:
       throw new Error('Unknown step');
