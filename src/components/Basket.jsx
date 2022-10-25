@@ -4,6 +4,11 @@ import Box from "@mui/material/Box";
 import "../App.css";
 import IP from '../utils/api'
 import { BasketContext } from "../context/BasketContext";
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 export default function Basket() {
 
@@ -58,24 +63,50 @@ const clear = () =>{
   localStorage.setItem("basket", JSON.stringify([]));
 }
   return (
-    <div>
+    <><div>
       <Box role="presentation">
         {basket.map((product, i) => {
           return (
-            <div key={i}>
-              <img src= {IP +"/"+ product.image} alt="" width='30%'/>
-              <h2>{product.title}</h2>
-              <h3 color="red">{product.price}</h3>
-              <h5>{product.qty}</h5>
-              <button onClick={() => buyItem(product)}>+</button>
-              <button onClick={() => removeItem(product)}>-</button>
-              <button onClick={() => remove(product)}>remove</button>
-              
+            <>
+            <div key={i} className='shop'>
+
+              <div className="image">
+              <img src={IP + "/" + product.image} alt=""  className="img"/>
+              </div>
+
+            <div className="title">
+              <h2 className="h2">{product.title}</h2>
+              <h4 className="h4"> Price : {product.price} DTN</h4>
+              <div className="counter1">
+              <div className="counter">
+              <AddIcon onClick={() => buyItem(product)}></AddIcon>
+              <Divider orientation="vertical" flexItem />
+              <span  className="h5">{product.qty}</span>
+              <Divider orientation="vertical" flexItem />
+              <RemoveIcon onClick={() => removeItem(product)}></RemoveIcon>
+              </div>
+              <IconButton onClick={() => remove(product)} aria-label="delete" size="small">
+              <DeleteIcon fontSize="inherit" />
+              </IconButton>
             </div>
+            </div>  
+          </div>
+             
+            <Divider  variant="middle" />
+            
+            </>
+            
           );
+          
         })}
-        <button onClick={() => clear()}>clear</button>
+        <div className="click">
+        <button id="clear" onClick={() => clear()}>clear</button>
+        <button  id="checkout" >Checkout</button>
+        </div>
+        
       </Box>
     </div>
+    
+    </> 
   );
 }
