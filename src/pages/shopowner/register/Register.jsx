@@ -17,18 +17,7 @@ import Information from './Information';
 import Link from '@mui/material/Link';
 
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
+
 
 const steps = ['Shipping address', 'Information', 'Payment details' ,  'Review your order'];
 
@@ -55,7 +44,7 @@ const word = {
     color: "#66bb6a"
 };
 
-export default function Checkout() {
+export default function Register() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -136,7 +125,6 @@ export default function Checkout() {
                       )}
                   </React.Fragment>
               </Paper>
-              {/* <Copyright /> */}
           </Container></>
   );
 }

@@ -7,9 +7,10 @@ import Home from "./pages/user/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green} from "@mui/material/colors";
 import Login from "../src/pages/shopowner/register/Login"
-import Checkout from "../src/pages/shopowner/register/Checkout"
+import Register from "./pages/shopowner/register/Register"
 import ShopOwnerLayout from './layout/ShopOwnerLayout'
 import HomeShopowner from './pages/shopowner/dashboard/HomeShopowner'
+import Checkout from "../src/pages/user/Checkout"
 const App = () => {
   const theme = createTheme({
     palette: {
@@ -25,12 +26,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
+          {/* <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sell" element={<Checkout />} />
-          <Route path="/sellershop" element={<ShopOwnerLayout><HomeShopowner/></ShopOwnerLayout>}/>
+          <Route path="/sell" element={<Register />} />
+          <Route path="/sellershop" element={<ShopOwnerLayout><HomeShopowner/></ShopOwnerLayout>}/> */}
+          <Route path="/" element={<Checkout/>}/>
         </Routes>
       </Router>
     </ThemeProvider>
