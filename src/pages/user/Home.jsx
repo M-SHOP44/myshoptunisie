@@ -52,7 +52,7 @@ export default function MultiActiCard() {
     <div className="sidebar-basket">
       {
         basket.length == 0 ?
-        <div>
+        <div className="empty-cart">
         <h2 id="empty">your cart is empty</h2>
         <span id="basket-icon">
         <ShoppingBasketIcon/>

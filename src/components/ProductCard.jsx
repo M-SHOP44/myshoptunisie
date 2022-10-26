@@ -8,7 +8,7 @@ import { BasketContext } from "../context/BasketContext";
 
 export default function ProductCard({ title, image, price, buy }) {
   return (
-    <Card style={{ width: "70%" }}>
+    <Card style={{ width: "100%" }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -23,7 +23,7 @@ export default function ProductCard({ title, image, price, buy }) {
           <Typography gutterBottom variant="h7" component="div">
             {price} TND
           </Typography>
-          <Button variant="contained" onClick={buy} sx={{ ml: 11 }}>
+          <Button variant="contained"  onClick={buy} sx={{ ml: 15 }}>
             BUY
           </Button>
         </CardContent>

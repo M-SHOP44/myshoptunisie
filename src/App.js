@@ -5,7 +5,7 @@ import Signup from "./pages/user/Signup"
 import Signin from "./pages/user/Signin"
 import Home from "./pages/user/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { green} from "@mui/material/colors";
+import { blue, green} from "@mui/material/colors";
 import Login from "../src/pages/shopowner/register/Login"
 import Register from "./pages/shopowner/register/Register"
 import ShopOwnerLayout from './layout/ShopOwnerLayout'
@@ -19,6 +19,7 @@ const App = () => {
       },
       secondary: {
         main: '#fff',
+       
       },
     }
   });

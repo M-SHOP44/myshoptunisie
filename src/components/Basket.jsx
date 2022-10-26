@@ -62,10 +62,13 @@ export default function Basket() {
     localStorage.setItem("basket", JSON.stringify([]));
   };
   const total = () => {
-    return basket.reduce((previous,current)=>{
-      return previous + ( parseFloat(current.price) * current.qty )
-    },0)
-  }
+    return basket.reduce((previous, current) => {
+      return previous + parseFloat(current.price) * current.qty;
+    }, 0);
+  };
+  const totalunitaire = () => {
+    return;
+  };
   return (
     <>
       <div>
@@ -75,18 +78,14 @@ export default function Basket() {
               <>
                 <div key={i} className="container-cart">
                   <div className="left-side">
-                    <img
-                      src={IP + "/" + product.image}
-                      alt=""
-                      
-                    />
+                    <img src={IP + "/" + product.image} alt="" />
                   </div>
 
                   <div className="right-side">
                     <h2 className="title-cart">{product.title}</h2>
                     <div className="price-delete">
-                    <h4 className="price-cart">{product.price} TND</h4>
-                    <IconButton
+                      <h4 className="price-cart">{product.price} TND</h4>
+                      <IconButton
                         onClick={() => remove(product)}
                         aria-label="delete"
                         size="small"
@@ -94,40 +93,90 @@ export default function Basket() {
                       >
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
-                    </div> 
+                    </div>
 
                     <div className="row1">
-                    
-                      <div className="counter">
-                        <RemoveIcon className="addicon" style={{maxWidth: '14px', fontWeight:'800', paddingRight:'5px', fontWeight: 900, cursor:'pointer', color:'#505050' }}  
-                          onClick={() => removeItem(product)}
-                        ></RemoveIcon>                        
-                        <Divider orientation="vertical" flexItem />
-                        <span className="paddingSpan" style={{padding:"5px 9px"}}>{product.qty}</span>
-                        <Divider orientation="vertical" flexItem />
-                        <AddIcon className="addicon" style={{maxWidth: '14px', fontWeight:'800', paddingLeft:'5px', fontWeight: 900, cursor:'pointer', color: '#505050'}} onClick={() => buyItem(product)}></AddIcon>
+                      <div className="container-quantity">
+                        <RemoveIcon className="minus" style={{fontSize:'small'}}></RemoveIcon>
+                        <div className="quan">
+                        <span className="quantity">{product.qty}</span>
+                        </div>
+                        <AddIcon className="plus" style={{fontSize:'small'}}></AddIcon>
                       </div>
                       <div className="totalone">
-                      <span id="span">Total: <span style={{fontWeight:'bold'}}>{total()}</span></span>
+                        <span id="span">
+                          Total:{" "}
+                          <span style={{ fontWeight: "bold" }}>
+                            {product.price * product.qty}
+                          </span>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  </div>
                 </div>
-               
+
                 <Divider variant="middle" />
-             
               </>
             );
           })}
-          <span id="span2">Total: <span style={{fontWeight:'bold', color:'red', fontSize:'18px'}}>{total()} TND</span></span>
+
+          <div className="span2">
+            <div className="tot">
+            Total:
+            </div>
+            <div
+              style={{ fontWeight: "bold", color: "#fa6338", fontSize: "18px" }}
+            >
+              {total()} TND
+            </div>
+          </div>
           <div className="click">
-            <Button className="clear" variant="contained"  onClick={() => clear()}>
+            <Button
+              className="clear"
+              variant="contained"
+              onClick={() => clear()}
+            >
               clear
             </Button>
-            <Button variant="contained" >Checkout</Button>
+            <Button variant="contained">Checkout</Button>
           </div>
         </Box>
       </div>
     </>
   );
 }
+
+
+// <div className="counter">
+//                         <RemoveIcon
+//                           className="addicon"
+//                           style={{
+//                             maxWidth: "15px",
+                            
+//                             fontWeight: "bold",
+//                             cursor: "pointer",
+//                             color: "#505050",
+                            
+//                           }}
+//                           onClick={() => removeItem(product)}
+//                         ></RemoveIcon>
+//                         <Divider orientation="vertical" flexItem />
+//                         <span
+//                           className="paddingSpan"
+//                           style={{ padding: "0px 10px" }}
+//                         >
+//                           {product.qty}
+//                         </span>
+//                         <Divider orientation="vertical" flexItem />
+//                         <AddIcon
+//                           className="addicon"
+//                           style={{
+//                             maxWidth: "15px",
+                            
+//                             fontWeight: "bold",
+//                             cursor: "pointer",
+//                             color: "#505050",
+//                           }}
+//                           onClick={() => buyItem(product)}
+//                         ></AddIcon>
+//                       </div>
