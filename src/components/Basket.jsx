@@ -85,7 +85,7 @@ export default function Basket() {
                   <div className="right-side">
                     <h2 className="title-cart">{product.title}</h2>
                     <div className="price-delete">
-                    <h4 className="price-cart">{product.price} DTN</h4>
+                    <h4 className="price-cart">{product.price} TND</h4>
                     <IconButton
                         onClick={() => remove(product)}
                         aria-label="delete"
@@ -94,19 +94,23 @@ export default function Basket() {
                       >
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
-                    </div>
-                   
-                    <div className="counter1">
+                    </div> 
+
+                    <div className="row1">
+                    
                       <div className="counter">
-                        <AddIcon onClick={() => buyItem(product)}></AddIcon>
-                        <Divider orientation="vertical" flexItem />
-                        <span className="h5">{product.qty}</span>
-                        <Divider orientation="vertical" flexItem />
-                        <RemoveIcon
+                        <RemoveIcon className="addicon" style={{maxWidth: '14px', fontWeight:'800', paddingRight:'5px', fontWeight: 900, cursor:'pointer', color:'#505050' }}  
                           onClick={() => removeItem(product)}
-                        ></RemoveIcon>
+                        ></RemoveIcon>                        
+                        <Divider orientation="vertical" flexItem />
+                        <span className="paddingSpan" style={{padding:"5px 9px"}}>{product.qty}</span>
+                        <Divider orientation="vertical" flexItem />
+                        <AddIcon className="addicon" style={{maxWidth: '14px', fontWeight:'800', paddingLeft:'5px', fontWeight: 900, cursor:'pointer', color: '#505050'}} onClick={() => buyItem(product)}></AddIcon>
                       </div>
+                      <div className="totalone">
+                      <span id="span">Total: <span style={{fontWeight:'bold'}}>{total()}</span></span>
                     </div>
+                  </div>
                   </div>
                 </div>
                
@@ -115,18 +119,9 @@ export default function Basket() {
               </>
             );
           })}
-             <div className="total">
-              <div>
-              <h3>Total:</h3>
-              </div>
-              <div>
-              <h5>{total()}</h5>
-              </div>
-                    
-                    
-                </div>
+          <span id="span2">Total: <span style={{fontWeight:'bold', color:'red', fontSize:'18px'}}>{total()} TND</span></span>
           <div className="click">
-            <Button variant="contained"  onClick={() => clear()}>
+            <Button className="clear" variant="contained"  onClick={() => clear()}>
               clear
             </Button>
             <Button variant="contained" >Checkout</Button>
