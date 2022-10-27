@@ -218,10 +218,7 @@ justify-content: space-between;
 }
 #clear 
 /*home*/
-  #empty {
-
-  
-  } 
+ 
 
 .empty-cart{
   display: flex;
@@ -249,4 +246,17 @@ justify-content: space-between;
 }
 .quan{
   margin-bottom: 5px;
+}
+
+/* register shop */
+.review{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  line-height: 2;
+}
+.items{
+  display: flex;
+  justify-content: space-between;
 }

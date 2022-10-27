@@ -13,13 +13,15 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem from '@mui/material/MenuItem';formdata
 import { useFormik } from 'formik';
 
-export default function AddressForm() {
+export default function AddressForm({formData,setFormData}) {
   
   const [age, setAge] = React.useState('');
   const [open, setOpen] = React.useState(false);
+
+
 
   const handleChanges = (event) => {
     setAge(event.target.value);
@@ -53,23 +55,8 @@ export default function AddressForm() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const [formData, setFormData] = useState({
-    email: '',
-    confirmemail: '',
-    password: '',
-    name: '',
-    Fullname: '',
-    phonenumber: '',
 
-
-  })
-
-  const formik = useFormik({
-    initialValues: {
-      shopname: "",
-    }
-  })
-
+    
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -85,30 +72,26 @@ export default function AddressForm() {
               name="The shop name"
               autoComplete="name"
               autoFocus
-              value={formik.values.shopname} 
-              onChange={formik.handleChange} 
+              value={formData.name} 
+              onChange={event => {setFormData({...formData, name:event.target.value})}} 
               />
       </Grid>
-        <Grid item xs={11} md={6} >
-         <FormControl sx={{  width: '100%' }}>
-        <InputLabel id="demo-controlled-open-select-label">CIN*</InputLabel>
-        <Select
-          required
-          fullWidth
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={age}
-          label="CIN"
-          onChange={handleChanges}
-        >
-          <MenuItem value={10}>Passport</MenuItem>
-          <MenuItem value={20}>Carte d'identité nationale</MenuItem>
-        </Select>
-      </FormControl>
-        </Grid>
+       
+        <Grid item sm={11} md={6}>
+        <TextField 
+              required
+              fullWidth
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={formData.cin}
+              type="number"
+              label="CIN"
+              onChange={event => {setFormData({...formData, cin:event.target.value})}}
+            />
+          </Grid>
         <Grid item sm={11} md={6}>
         <TextField 
               required
@@ -169,7 +152,7 @@ export default function AddressForm() {
           id="outlined-adornment-password"
           type={values.showPassword ? 'text' : 'password'}
           value={values.password}
-          onChange={handleChange('password')}
+       
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -210,14 +193,10 @@ export default function AddressForm() {
         />
       </FormControl>
       </Grid>  
-        <Grid item xs={11}>
-          <FormControlLabel
-            control={<Checkbox color="success" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid>
+     
       </Grid>
     </React.Fragment>
   );
-}
 
+
+        }
