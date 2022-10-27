@@ -15,29 +15,15 @@ import AddressForm from './AddressForm';
 import Review from './Review';
 import Information from './Information';
 import Link from '@mui/material/Link';
+import axios from 'axios';
+import IP from '../../../utils/api'
 
 
 
 
 const steps = ['information personnel', 'information du shop' ,  'Verification de vos données'];
 
-const GetStepContent = ({step}) => {
-    const [formData, setFormData] = useState({
-        email: '',
-        confirmemail: '',
-        password: '',
-        name: '',
-        Fullname: '',
-        phonenumber: '',
-        address: '',
-        postalcode: '',
-        city: '',
-        name: '',
-        Fullname: '',
-        tax: '',
-        cin:''
-    })
-
+const GetStepContent = ({step , formData, setFormData}) => {
   switch (step) {
     case 0:
       return <AddressForm formData={formData} setFormData={setFormData}/>;
@@ -58,8 +44,27 @@ const word = {
     color: "#66bb6a"
 };
 
+
 export default function Register() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [ active , setActive ] = React.useState(false)
+
+  const [formData, setFormData] = useState({
+    email: '',
+    confirmemail: '',
+    password: '',
+    confirmPassword:'',
+    name: '',
+    Fullname: '',
+    phonenumber: '',
+    address: '',
+    postalcode: '',
+    city: '',
+    name: '',
+    Fullname: '',
+    tax: '',
+    cin:''
+})
  
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -68,20 +73,29 @@ export default function Register() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  
+  const register = () => {
+    axios.post(`${IP}/auth/shopowner/signup`, formData,{authorization: "Bearer " + localStorage.getItem("token") }).then((response) => {
+      console.log(response.data);
+    })
+}
 
-  const validate = () => {
+    React.useEffect(()=> {
+        console.log(formData);
+        setActive(false)
+        switch ( activeStep ) {
+            case 0: setActive( formData.name.length == 0 || formData.cin.length || formData.Fullname.length== 0 || formData.phonenumber.length== 0 || formData.email.length== 0 || formData.confirmemail.length== 0
+            || formData.password.length == 0 || formData.confirmPassword.length == 0 ); break ;
+    
+            case 1 :  setActive( formData.address.length == 0 || formData.postalcode.length== 0 || formData.city.length== 0 || formData.Fullname.length== 0 || formData.tax.length== 0); break ;
+            
+            case 2:  setActive(true) ; break ;
+    
+            default: setActive(true) ; break ;
+        }
+    }      ,[formData,active,activeStep])
 
-    switch ( activeStep ) {
-        case 0: formData.name.length == 0 || formData.cin.length== 0 || formData.Fullname.length== 0 || formData.phonenumber.length== 0 || formData.email.length== 0 || formData.confirmemail.length== 0
-        || formData.password.length || formData.password.length ;
 
-        case 1 : formData.address.length == 0 || formData.postalcode.length== 0 || formData.city.length== 0 || formData.Fullname.length== 0 || formData.tax.length== 0;
-        
-        case 2: formData.cardname.length == 0 || formData.cardnum.length== 0 || formData.expirydate.length== 0 || formData.cvv.length== 0 ;
-
-        default: return true
-    }
-  }
 
   return (
     
@@ -132,7 +146,7 @@ export default function Register() {
                           </React.Fragment>
                       ) : (
                           <React.Fragment>
-                              <GetStepContent step={activeStep}/>
+                              <GetStepContent step={activeStep} formData={formData} setFormData={setFormData}/>
                               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                   {activeStep !== 0 && (
                                       <Button color="success" onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -143,12 +157,17 @@ export default function Register() {
                                   <Button
                                       color='success'
                                       variant="contained"
-                                      disabled={validate}
-                                      onClick={handleNext}
+                                      disabled={activeStep == 2 ? false : active}
+                                      onClick={(() => {
+                                        if (activeStep == 2)
+                                        (register()) 
+                                        else
+                                        (handleNext())})}
                                       sx={{ mt: 3, ml: 1 }}
                                   >
-                                      {activeStep === steps.length - 1 ? 'Register' : 'Next'}
+                                      {activeStep === steps.length - 1 ? 'Register' : 'Next' }
                                   </Button>
+                                  
                               </Box>
                           </React.Fragment>
                       )}

@@ -13,8 +13,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';formdata
+import MenuItem from '@mui/material/MenuItem';
 import { useFormik } from 'formik';
+
+
 
 export default function AddressForm({formData,setFormData}) {
   
@@ -144,15 +146,64 @@ export default function AddressForm({formData,setFormData}) {
               onChange={event => {setFormData({...formData, confirmemail:event.target.value})}}
             />
         </Grid>  
+        <Grid item xs={11} md={6}>
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <OutlinedInput
+            id="password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={formData.password} 
+            onChange={event => {setFormData({...formData, password:event.target.value})}}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
+        </Grid>
+        <Grid item xs={11} md={6}>
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <InputLabel htmlFor="password">Confirm Password</InputLabel>
+          <OutlinedInput
+            id="password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={formData.confirmPassword} 
+            onChange={event => {setFormData({...formData, confirmPassword:event.target.value})}}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Confirm Password"
+          />
+        </FormControl>
+        </Grid>
 
-       <Grid item xs={11} md={6}>
+
+       {/* <Grid item xs={11} md={6}>
         <FormControl  sx={{ width: "100%" }} variant="outlined">
         <InputLabel  required htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput  
           id="outlined-adornment-password"
           type={values.showPassword ? 'text' : 'password'}
           value={values.password}
-       
+          onChange={handleChange('password')}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -193,7 +244,7 @@ export default function AddressForm({formData,setFormData}) {
         />
       </FormControl>
       </Grid>  
-     
+      */}
       </Grid>
     </React.Fragment>
   );
