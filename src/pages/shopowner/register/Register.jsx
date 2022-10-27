@@ -15,29 +15,15 @@ import AddressForm from './AddressForm';
 import Review from './Review';
 import Information from './Information';
 import Link from '@mui/material/Link';
+import axios from 'axios';
+import IP from '../../../utils/api'
 
 
 
 
 const steps = ['information personnel', 'information du shop' ,  'Verification de vos données'];
 
-const GetStepContent = ({step}) => {
-    const [formData, setFormData] = useState({
-        email: '',
-        confirmemail: '',
-        password: '',
-        name: '',
-        Fullname: '',
-        phonenumber: '',
-        address: '',
-        postalcode: '',
-        city: '',
-        name: '',
-        Fullname: '',
-        tax: '',
-        cin:''
-    })
-
+const GetStepContent = ({step , formData, setFormData}) => {
   switch (step) {
     case 0:
       return <AddressForm formData={formData} setFormData={setFormData}/>;
@@ -58,8 +44,26 @@ const word = {
     color: "#66bb6a"
 };
 
+
 export default function Register() {
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const [formData, setFormData] = useState({
+    email: '',
+    confirmemail: '',
+    password: '',
+    confirmPassword:'',
+    name: '',
+    Fullname: '',
+    phonenumber: '',
+    address: '',
+    postalcode: '',
+    city: '',
+    name: '',
+    Fullname: '',
+    tax: '',
+    cin:''
+})
  
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -68,6 +72,12 @@ export default function Register() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  
+  const register = () => {
+    axios.post(`${IP}/auth/shopowner/signup`, formData,{authorization: "Bearer " + localStorage.getItem("token") }).then((response) => {
+      console.log(response.data);
+    })
+}
 
   return (
     
@@ -118,7 +128,7 @@ export default function Register() {
                           </React.Fragment>
                       ) : (
                           <React.Fragment>
-                              <GetStepContent step={activeStep}/>
+                              <GetStepContent step={activeStep} formData={formData} setFormData={setFormData}/>
                               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                   {activeStep !== 0 && (
                                       <Button color="success" onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -129,11 +139,16 @@ export default function Register() {
                                   <Button
                                       color='success'
                                       variant="contained"
-                                      onClick={handleNext}
+                                      onClick={(() => {
+                                        if (activeStep == 2)
+                                        (register()) 
+                                        else
+                                        (handleNext())})}
                                       sx={{ mt: 3, ml: 1 }}
                                   >
-                                      {activeStep === steps.length - 1 ? 'Register' : 'Next'}
+                                      {activeStep === steps.length - 1 ? 'Register' : 'Next' }
                                   </Button>
+                                  
                               </Box>
                           </React.Fragment>
                       )}
