@@ -14,7 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useFormik } from 'formik';
 
 export default function AddressForm() {
   
@@ -61,9 +61,15 @@ export default function AddressForm() {
     Fullname: '',
     phonenumber: '',
 
-    
 
   })
+
+  const formik = useFormik({
+    initialValues: {
+      shopname: "",
+    }
+  })
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -79,8 +85,8 @@ export default function AddressForm() {
               name="The shop name"
               autoComplete="name"
               autoFocus
-              value={formData.name} 
-              onChange={event => {setFormData({...formData, name:event.target.value})}}
+              value={formik.values.shopname} 
+              onChange={formik.handleChange} 
               />
       </Grid>
         <Grid item xs={11} md={6} >

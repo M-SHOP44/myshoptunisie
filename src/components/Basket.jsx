@@ -132,13 +132,14 @@ export default function Basket() {
           </div>
           <div className="click">
             <Button
+              style={{color:'white', backgroundColor:'success'}}
               className="clear"
               variant="contained"
               onClick={() => clear()}
             >
               clear
             </Button>
-            <Button variant="contained">Checkout</Button>
+            <Button style={{color:'white'}} variant="contained">Checkout</Button>
           </div>
         </Box>
       </div>
