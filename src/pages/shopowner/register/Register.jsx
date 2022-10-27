@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -18,16 +19,32 @@ import Link from '@mui/material/Link';
 
 
 
-const steps = ['personal information', 'shop Information' ,  'Review your registration'];
+const steps = ['information personnel', 'information du shop' ,  'Verification de vos données'];
 
-function getStepContent(step) {
+const GetStepContent = ({step}) => {
+    const [formData, setFormData] = useState({
+        email: '',
+        confirmemail: '',
+        password: '',
+        name: '',
+        Fullname: '',
+        phonenumber: '',
+        address: '',
+        postalcode: '',
+        city: '',
+        name: '',
+        Fullname: '',
+        tax: '',
+        cin:''
+    })
+
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm formData={formData} setFormData={setFormData}/>;
     case 1:
-      return <Information />;
+      return <Information formData={formData} setFormData={setFormData} />;
     case 2:
-        return <Review />;
+        return <Review formData={formData} setFormData={setFormData} />;
     default:
       throw new Error('Unknown step');
   }
@@ -43,7 +60,7 @@ const word = {
 
 export default function Register() {
   const [activeStep, setActiveStep] = React.useState(0);
-
+ 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -101,7 +118,7 @@ export default function Register() {
                           </React.Fragment>
                       ) : (
                           <React.Fragment>
-                              {getStepContent(activeStep)}
+                              <GetStepContent step={activeStep}/>
                               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                   {activeStep !== 0 && (
                                       <Button color="success" onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -115,7 +132,7 @@ export default function Register() {
                                       onClick={handleNext}
                                       sx={{ mt: 3, ml: 1 }}
                                   >
-                                      {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                      {activeStep === steps.length - 1 ? 'Register' : 'Next'}
                                   </Button>
                               </Box>
                           </React.Fragment>
