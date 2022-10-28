@@ -84,7 +84,7 @@ export default function Register() {
         console.log(formData);
         setActive(false)
         switch ( activeStep ) {
-            case 0: setActive( formData.name.length == 0 || formData.cin.length || formData.Fullname.length== 0 || formData.phonenumber.length== 0 || formData.email.length== 0 || formData.confirmemail.length== 0
+            case 0: setActive( formData.name.length == 0 || formData.cin.length == 0 || formData.Fullname.length== 0 || formData.phonenumber.length== 0 || formData.email.length== 0 || formData.confirmemail.length== 0
             || formData.password.length == 0 || formData.confirmPassword.length == 0 ); break ;
     
             case 1 :  setActive( formData.address.length == 0 || formData.postalcode.length== 0 || formData.city.length== 0 || formData.Fullname.length== 0 || formData.tax.length== 0); break ;

@@ -170,16 +170,16 @@ const UserLayout = ({ children }) => {
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Stack direction="row" spacing={5} margin={"0 auto"}>
-            <Link href="#" underline="none">
+            <Link href="/category/Canapé" underline="none">
               {"Canapé"}
             </Link>
-            <Link href="#" underline="none">
+            <Link href="/category/Table" underline="none">
               {"Table"}
             </Link>
-            <Link href="#" underline="none">
+            <Link href="/category/Chaise" underline="none">
               {"Chaise"}
             </Link>
-            <Link href="#" underline="none">
+            <Link href="/category/Lit" underline="none">
               {"Lit"}
             </Link>
             <Link href="#" underline="none">

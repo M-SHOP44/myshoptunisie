@@ -27,13 +27,14 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sell" element={<Register />} />
           <Route path="/sellershop" element={<ShopOwnerLayout><HomeShopowner/></ShopOwnerLayout>}/>
           <Route path="/checkout" element={<Checkout/>}/>
+          <Route path="/category/:category" element={<UserLayout ><Home /></UserLayout>} />
+          <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
         </Routes>
       </Router>
     </ThemeProvider>

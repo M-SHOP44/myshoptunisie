@@ -218,16 +218,26 @@ justify-content: space-between;
 }
 #clear 
 /*home*/
- 
-
-.empty-cart{
+/* .empty{
   display: flex;
-  flex-direction: column;
+  background-color: red;
+  color: red;
   justify-content: center;
-  align-items: center;
- 
-  margin-top: 15rem;
-
+  align-items: center;  
+} */
+.empty{
+  display: flex;
+  background-color: red;
+  color: red;
+  justify-content: center;
+  align-items: center;  
+}
+.empty{
+  display: flex;
+ flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  margin:5rem
 }
 
 .container-quantity{

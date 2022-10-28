@@ -12,9 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { useFormik } from 'formik';
+
 
 
 
@@ -68,7 +66,7 @@ export default function AddressForm({formData,setFormData}) {
         <Grid item xs={11} md={6}>
         <TextField  sx={{  width: '100%' }}
               required
-              fullWidth
+              fullWidth 
               id="The shop name"
               label="The shop name"
               name="The shop name"
@@ -89,7 +87,7 @@ export default function AddressForm({formData,setFormData}) {
               onClose={handleClose}
               onOpen={handleOpen}
               value={formData.cin}
-              type="number"
+              type="text"
               label="CIN"
               onChange={event => {setFormData({...formData, cin:event.target.value})}}
             />

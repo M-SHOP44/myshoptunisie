@@ -6,15 +6,22 @@ import { BasketContext } from "../../context/BasketContext";
 import '../../App.css'
 import Basket from "../../components/Basket";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { useParams } from "react-router-dom";
 
 export default function MultiActiCard() {
   const [products, setProducts] = useState([]);
   const { basket, setBasket } = React.useContext(BasketContext);
+  const category = useParams()['category'];
 
   
   useEffect(() => {
+    var url = `${IP}/product`;
+
+    if(category){
+      url += `?category=${category.toLocaleLowerCase()}`
+    }
     
-    axios.get(`${IP}/product/`)
+    axios.get(url)
       .then((res) => {
         setProducts(res.data);
       })
@@ -52,11 +59,13 @@ export default function MultiActiCard() {
     <div className="sidebar-basket">
       {
         basket.length == 0 ?
-        <div className="empty-cart">
-        <h2 id="empty">your cart is empty</h2>
-        <span id="basket-icon">
-        <ShoppingBasketIcon/>
-        </span>
+        <div className="empty">
+          <div>
+          <h2 >your cart is empty</h2>
+          </div>
+          <div>
+          <ShoppingBasketIcon/>
+          </div>
        </div>
       :
       <Basket/>
