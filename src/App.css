@@ -270,3 +270,48 @@ justify-content: space-between;
   display: flex;
   justify-content: space-between;
 }
+
+
+/* checkout  */
+.container-bag{
+  display: flex;
+  flex-direction: column;
+}
+.content-bag{
+  /* background-color: red; */
+  display: flex;
+}
+.total{
+  color: green;
+  font-weight: bold;
+  justify-content: end;
+}
+.image-bag{
+  width: 150px;
+}
+.text-header{
+  display: flex;
+  justify-content: center;
+  color: green;
+}
+.price-cart{
+  font-size: 15px;
+}
+
+/* Products-shopkeeper */
+.edit-button{
+  background-color:#6495ED;
+  color: white;
+  border: transparent;
+  width: 50px;
+  height:30px;
+  border-radius: 5px;
+}
+.delete-button{
+background-color: red;
+color: white;
+border: transparent;
+  width: 50px;
+  height:30px;
+  border-radius: 5px;
+}

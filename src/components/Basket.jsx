@@ -139,7 +139,7 @@ export default function Basket() {
             >
               clear
             </Button>
-            <Button style={{color:'white'}} variant="contained">Checkout</Button>
+            <Button style={{color:'white'}} variant="contained" href="/checkout">Checkout</Button>
           </div>
         </Box>
       </div>

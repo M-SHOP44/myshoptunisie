@@ -7,10 +7,10 @@ import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
 import axios from "axios";
 import IP from "../utils/api";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const style = {
   position: "absolute",
@@ -23,29 +23,28 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
-export default function BasicModal({ open, handleClose }) {
+const UpdateModal = ({ handleClose, product }) => {
   const [formData, setFormData] = useState({
-    category: "",
-    title: "",
-    description: "",
-    image: "",
-    price: "",
+    category: product.category,
+    title: product.title,
+    description: product.description,
+    image: product.image,
+    price: product.price,
   });
-  const add = () => {
-    const form = new FormData();
-    Object.keys(formData).map((key) => {
-      form.append(key, formData[key]);
-    });
-    axios.post(`${IP}/product/create`, form).then((response) => {
+ const product_id = product._id
+
+  const updateProduct = () =>{
+    axios.put(`${IP}/product/${product_id}`, formData).then((response)=>{
+    
       console.log(response.data);
-      // setOpen(true)
-    });
-  };
+      console.log(product_id);
+    })
+  }
+ 
   return (
     <div>
       <Modal
-        open={open}
+        open={true}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -65,25 +64,25 @@ export default function BasicModal({ open, handleClose }) {
               setFormData({ ...formData, title: event.target.value });
             }}
           />
-        <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" >Category</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="category"
-          value={formData.category}
-          onChange={(event) => {
-            setFormData({ ...formData, category: event.target.value });
-          }}
-        >
-          <MenuItem value={"Canapé"}>canapé</MenuItem>
-          <MenuItem value={"Table"}>table</MenuItem>
-          <MenuItem value={"Chaise"}>chaise</MenuItem>
-          <MenuItem value={"Lit"}>Lit</MenuItem>
-          <MenuItem value={"Rangemenr"}>rangement</MenuItem>
-        </Select>
-      </FormControl>
-         
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="category"
+              value={formData.category}
+              onChange={(event) => {
+                setFormData({ ...formData, category: event.target.value });
+              }}
+            >
+              <MenuItem value={"canapé"}>canapé</MenuItem>
+              <MenuItem value={"Table"}>table</MenuItem>
+              <MenuItem value={"Chaise"}>chaise</MenuItem>
+              <MenuItem value={"Lit"}>Lit</MenuItem>
+              <MenuItem value={"Rangement"}>rangement</MenuItem>
+            </Select>
+          </FormControl>
+
           <TextField
             margin="normal"
             required
@@ -130,14 +129,16 @@ export default function BasicModal({ open, handleClose }) {
 
           <Button
             type="submit"
-            onClick={add}
+            onClick={updateProduct}
             variant="contained"
             sx={{ mt: 3, mb: 2, ml: 40 }}
           >
-            Add
+            Update
           </Button>
         </Box>
       </Modal>
     </div>
   );
-}
+};
+
+export default UpdateModal;

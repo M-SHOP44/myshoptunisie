@@ -10,14 +10,15 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-// import Grid from '@mui/material/Grid';
-// import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 // import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../pages/shopowner/dashboard/listItems';
 import Products from '../pages/shopowner/dashboard/Products';
+import Orders from '../pages/shopowner/dashboard/Orders';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -141,15 +142,24 @@ export default function DashboardContent() {
               theme.palette.mode === 'light'
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
+                padding: 10,
+                pt:20,
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
           }}
         >
-
+ <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Products />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Orders />
+                </Paper>
+              </Grid>
         
-          <Toolbar />
-          <Products/>
         </Box>
       </Box>
   );

@@ -14,7 +14,6 @@ import StorefrontTwoToneIcon from "@mui/icons-material/StorefrontTwoTone";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { BasketContext } from "../context/BasketContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -71,7 +70,6 @@ function Copyright() {
 }
 const UserLayout = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [basket, setBasket] = React.useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -82,17 +80,12 @@ const UserLayout = ({ children }) => {
   };
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("client"));
-    const basketData = JSON.parse(localStorage.getItem("basket"));
     const token = localStorage.getItem("token");
     if (userData && token) {
       setUser(userData);
     }
-    if (basketData) {
-      setBasket(basketData)
-    }
   }, []);
   return (
-    <BasketContext.Provider value={{ basket , setBasket}} >
     <Box>
       <AppBar position="static" color="primary">
         <Toolbar>
@@ -219,7 +212,6 @@ const UserLayout = ({ children }) => {
         </Container>
       </Box>
     </Box>
-    </BasketContext.Provider>
   );
 };
 
