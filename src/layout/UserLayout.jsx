@@ -93,9 +93,8 @@ const UserLayout = ({ children }) => {
             variant="h6"
             color="secondary"
             margin={"0px 0px 0px 0px"}
-            sx={{ flexGrow: 1 }}
-          >
-            MyShopTunis
+            sx={{ flexGrow: 1 }}          >
+            <a href="/" className="sarah">MyShopTunis</a> 
           </Typography>
           <Button
             style={{ hover: "none" }}
@@ -163,7 +162,7 @@ const UserLayout = ({ children }) => {
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Stack direction="row" spacing={5} margin={"0 auto"}>
-            <Link href="/category/Canapé" underline="none">
+            <Link href="/category/canapé" underline="none">
               {"Canapé"}
             </Link>
             <Link href="/category/Table" underline="none">

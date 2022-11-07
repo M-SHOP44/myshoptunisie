@@ -12,7 +12,9 @@ import ShopOwnerLayout from './layout/ShopOwnerLayout'
 //import HomeShopowner from './pages/shopowner/dashboard/HomeShopowner'
 import Checkout from "../src/pages/user/Checkout"
 import { BasketContext } from "./context/BasketContext";
-
+import Signinadmin from "./pages/admin/register/signin";
+import DashboardAdmin from "./layout/AdminDashboard"
+import Listclients from "./pages/admin/dashboard/listClient"
 const App = () => {
   const [basket, setBasket] = React.useState([]);
 
@@ -39,6 +41,8 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
+        <Route path="/admin" element={<Signinadmin />} />
+        <Route path="/dashboardadmin" element={<DashboardAdmin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
@@ -47,6 +51,8 @@ const App = () => {
           <Route path="/checkout" element={<Checkout/>}/>
           <Route path="/category/:category" element={<UserLayout ><Home /></UserLayout>} />
           <Route path="/" element={<UserLayout ><Home /></UserLayout>} />
+          {/* <Route path="/listclient" element={ <DashboardAdmin><Listclients/>  </DashboardAdmin>} /> */}
+
         </Routes>
       </Router>
     </ThemeProvider>

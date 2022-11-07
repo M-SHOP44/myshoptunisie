@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 export default function MultiActiCard() {
   const [products, setProducts] = useState([]);
   const { basket, setBasket } = React.useContext(BasketContext);
+
   const category = useParams()['category'];
 
   
@@ -18,8 +19,10 @@ export default function MultiActiCard() {
     var url = `${IP}/product`;
 
     if(category){
-      url += `?category=${category.toLocaleLowerCase()}`
+      url += `?category=${category}`
     }
+
+    console.log('category : ' + url)
     
     axios.get(url)
       .then((res) => {

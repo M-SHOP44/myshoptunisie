@@ -80,7 +80,10 @@ export default function BasicModal({ open, handleClose }) {
           <MenuItem value={"Table"}>table</MenuItem>
           <MenuItem value={"Chaise"}>chaise</MenuItem>
           <MenuItem value={"Lit"}>Lit</MenuItem>
-          <MenuItem value={"Rangemenr"}>rangement</MenuItem>
+          <MenuItem value={"Rangement"}>rangement</MenuItem>
+          <MenuItem value={"bibliotheque"}>bibliotheque</MenuItem>
+          <MenuItem value={"tapie"}>Tapie</MenuItem>
+          <MenuItem value={"luminaire"}>Luminaire</MenuItem>
         </Select>
       </FormControl>
          

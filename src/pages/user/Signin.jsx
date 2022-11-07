@@ -54,19 +54,8 @@ export default function SignIn() {
     reenterpassword: "",
     showPassword: false,
   });
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -100,15 +89,31 @@ export default function SignIn() {
               setFormData({ ...formData, email: event.target.value });
             }}
           />
-          <FormControl sx={{ width: "100%" }} variant="outlined">
+           <TextField
+            sx={{ mt: 2, mb: 2 }}
+            required
+            fullWidth
+            type='password'
+            label="password"
+            name="password"
+            autoComplete="password"
+            autoFocus
+            value={formData.password}
+            onChange={(event) => {
+              setFormData({ ...formData, password: event.target.value });
+            }}
+          />
+          {/* <FormControl sx={{ width: "100%" }} variant="outlined">
             <InputLabel required htmlFor="outlined-adornment-password">
-              Confirm Password
+              Password
             </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
+              value={formData.password}
+              onChange={(event) => {
+                setFormData({ ...formData, password: event.target.value });
+              }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -123,7 +128,7 @@ export default function SignIn() {
               }
               label="Confirm Password"
             />
-          </FormControl>
+          </FormControl> */}
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"

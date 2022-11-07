@@ -141,6 +141,14 @@ justify-content: space-between;
   
   
 } */
+.card-content{
+  height: 100px;
+
+}
+.card-media{
+  height: 100px;
+
+}
 .addicon{
   display: flex;
  padding: 1px;
@@ -225,6 +233,7 @@ justify-content: space-between;
   justify-content: center;
   align-items: center;  
 } */
+
 .empty{
   display: flex;
   background-color: red;
@@ -314,4 +323,8 @@ border: transparent;
   width: 50px;
   height:30px;
   border-radius: 5px;
+}
+.sarah{
+  text-decoration: none;
+  color: white;
 }

@@ -12,11 +12,11 @@ export default function ProductCard({ title, image, price, buy }) {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          className="card-media"
           image={image}
           alt="green iguana"
         />
-        <CardContent>
+        <CardContent className="card-content">
           <Typography gutterBottom variant="h6" component="div">
             {title}
           </Typography>
