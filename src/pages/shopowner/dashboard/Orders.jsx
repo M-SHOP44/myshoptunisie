@@ -13,7 +13,8 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from '@mui/material/Box';
+import Moment from 'react-moment';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -45,16 +46,20 @@ export default function Orders() {
         </TableHead>
       </Table>
       {orders.map((order, i) => (
-        <div key={i}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}  >
+        <div key={i}>
           <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>{order.fullname}</Typography>
-              <Typography>{order.createdAt}</Typography>
+            <AccordionSummary  >
+              <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+        }}>
+              <Typography >{order.fullname}</Typography>
+             <Typography  ><Moment format="YYYY/MM/DD" date={order.createdAt}>{}</Moment></Typography> 
+             </Box>
             </AccordionSummary>
             <AccordionDetails>
               <Table aria-label="simple table">

@@ -17,6 +17,7 @@ import Information from './Information';
 import Link from '@mui/material/Link';
 import axios from 'axios';
 import IP from '../../../utils/api'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -48,6 +49,7 @@ const word = {
 export default function Register() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [ active , setActive ] = React.useState(false)
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -76,6 +78,7 @@ export default function Register() {
   
   const register = () => {
     axios.post(`${IP}/auth/shopowner/signup`, formData,{authorization: "Bearer " + localStorage.getItem("token") }).then((response) => {
+        navigate("/login");
       console.log(response.data);
     })
 }
@@ -160,7 +163,7 @@ export default function Register() {
                                       disabled={activeStep == 2 ? false : active}
                                       onClick={(() => {
                                         if (activeStep == 2)
-                                        (register()) 
+                                        (register() ) 
                                         else
                                         (handleNext())})}
                                       sx={{ mt: 3, ml: 1 }}
@@ -173,6 +176,8 @@ export default function Register() {
                       )}
                   </React.Fragment>
               </Paper>
-          </Container></>
+              
+          </Container>
+          </>
   );
 }

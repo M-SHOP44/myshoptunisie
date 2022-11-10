@@ -11,9 +11,12 @@ import InputBase from "@mui/material/InputBase";
 import Container from "@mui/material/Container";
 import { styled, alpha } from "@mui/material/styles";
 import StorefrontTwoToneIcon from "@mui/icons-material/StorefrontTwoTone";
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import axios from "axios";
+import IP from "../utils/api";
+
+// search
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,6 +59,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+// copyright
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary">
@@ -68,16 +73,21 @@ function Copyright() {
     </Typography>
   );
 }
+
 const UserLayout = ({ children }) => {
   const [user, setUser] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [category, setCategory] = useState([]);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  //
   const handleClose = () => {
     setAnchorEl(null);
   };
+  //
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("client"));
     const token = localStorage.getItem("token");
@@ -85,6 +95,19 @@ const UserLayout = ({ children }) => {
       setUser(userData);
     }
   }, []);
+
+  //
+  useEffect(() => {
+    getCategory();
+  }, []);
+  //
+  const getCategory = () => {
+    axios.get(`${IP}/category/approved`).then((response) => {
+      setCategory(response.data);
+      console.log();
+    });
+  };
+
   return (
     <Box>
       <AppBar position="static" color="primary">
@@ -93,8 +116,11 @@ const UserLayout = ({ children }) => {
             variant="h6"
             color="secondary"
             margin={"0px 0px 0px 0px"}
-            sx={{ flexGrow: 1 }}          >
-            <a href="/" className="sarah">MyShopTunis</a> 
+            sx={{ flexGrow: 1 }}
+          >
+            <a href="/" className="sarah">
+              MyShopTunis
+            </a>
           </Typography>
           <Button
             style={{ hover: "none" }}
@@ -144,7 +170,7 @@ const UserLayout = ({ children }) => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={()=>setUser(null)}>Logout</MenuItem>
+                <MenuItem onClick={() => setUser(null)}>Logout</MenuItem>
               </Menu>
             </>
           ) : (
@@ -161,33 +187,13 @@ const UserLayout = ({ children }) => {
       </AppBar>
       <AppBar position="static" color="secondary">
         <Toolbar>
-          <Stack direction="row" spacing={5} margin={"0 auto"}>
-            <Link href="/category/canapé" underline="none">
-              {"Canapé"}
-            </Link>
-            <Link href="/category/Table" underline="none">
-              {"Table"}
-            </Link>
-            <Link href="/category/Chaise" underline="none">
-              {"Chaise"}
-            </Link>
-            <Link href="/category/Lit" underline="none">
-              {"Lit"}
-            </Link>
-            <Link href="#" underline="none">
-              {"Bibliotheque"}
-            </Link>
-            <Link href="#" underline="none">
-              {"Tapie"}
-            </Link>
-            <Link href="#" underline="none">
-              {"Luminaire"}
-            </Link>
-            <Link href="#" underline="none">
-              {"Bureau"}
-            </Link>
-          </Stack>
-         
+          {category.map((item, i) => (
+            <Stack direction="row" key={i} spacing={5} margin={"0 auto"}>
+              <Link href={"/category/" + item._id} underline="none">
+                {item.name}
+              </Link>
+            </Stack>
+          ))}
         </Toolbar>
       </AppBar>
       <div>{children}</div>

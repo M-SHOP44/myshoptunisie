@@ -15,6 +15,7 @@ export default function ProductCard({ title, image, price, buy }) {
           className="card-media"
           image={image}
           alt="green iguana"
+         
         />
         <CardContent className="card-content">
           <Typography gutterBottom variant="h6" component="div">
